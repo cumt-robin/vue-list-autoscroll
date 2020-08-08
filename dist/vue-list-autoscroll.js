@@ -2,11 +2,11 @@
 	if(typeof exports === 'object' && typeof module === 'object')
 		module.exports = factory();
 	else if(typeof define === 'function' && define.amd)
-		define("VueAutoscroll", [], factory);
+		define("VueListAutoscroll", [], factory);
 	else if(typeof exports === 'object')
-		exports["VueAutoscroll"] = factory();
+		exports["VueListAutoscroll"] = factory();
 	else
-		root["VueAutoscroll"] = factory();
+		root["VueListAutoscroll"] = factory();
 })(window, function() {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache

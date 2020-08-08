@@ -1,11 +1,11 @@
-import VueAutoscroll from "./autoscroll";
+import VueListAutoscroll from "./autoscroll";
 
-VueAutoscroll.install = function(Vue) {
-    Vue.directive('autoscroll', VueAutoscroll);
+VueListAutoscroll.install = function(Vue) {
+    Vue.directive('autoscroll', VueListAutoscroll);
 }
 
 if (typeof window !== 'undefined' && window.Vue) {
-    VueAutoscroll.install(window.Vue)
+    VueListAutoscroll.install(window.Vue)
 }
 
-export default VueAutoscroll
+export default VueListAutoscroll

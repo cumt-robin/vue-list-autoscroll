@@ -10,13 +10,13 @@ function resolvePath(dir) {
 const buildConfig = merge(baseWebpackConfig, {
     mode: 'production',
     entry: {
-        'vue-autoscroll': './src/directives/index.js'
+        'vue-list-autoscroll': './src/directives/index.js'
     },
     output: {
         path: resolvePath('dist'),
         publicPath: '/',
         filename: '[name].js',
-        library: 'VueAutoscroll',
+        library: 'VueListAutoscroll',
         libraryTarget: 'umd',
         umdNamedDefine: true
     },

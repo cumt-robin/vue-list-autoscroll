@@ -1,6 +1,6 @@
 <template>
     <div id="app">
-        <h2>vue-autoscroll</h2>
+        <h2>vue-list-autoscroll</h2>
         <p style="width:800px;">这是一个vue指令，可以支持菜单横向滚动，当鼠标置于滚动容器的边界时，会触发滚动。当然该指令也不局限于菜单场景，其他的DOM元素也可以使用，使用时需要注意以下几点：</p>
         <ul class="info-list">
             <li>使用该指令时，应该是这样的三层式结构
@@ -25,7 +25,7 @@
 
 <script>
 // 局部引入
-// import VueAutoscroll from "./directives";
+// import VueListAutoscroll from "./directives";
 export default {
     name: 'App',
     data() {
@@ -42,7 +42,7 @@ export default {
         }
     },
     // directives: {
-    //     autoscroll: VueAutoscroll
+    //     autoscroll: VueListAutoscroll
     // }
 }
 </script>

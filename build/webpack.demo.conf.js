@@ -21,7 +21,7 @@ module.exports = merge(baseWebpackConfig, {
     devtool: 'source-map',
     plugins: [
         new HtmlWebpackPlugin({
-            title: 'vue-autoscroll',
+            title: 'vue-list-autoscroll',
             template: 'index.html',
             filename: 'index.html',
             favicon: 'favicon.ico',

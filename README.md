@@ -1,4 +1,4 @@
-# vue-autoscroll
+# vue-list-autoscroll
 
 这是一个vue指令，可以支持菜单横向滚动，当鼠标置于滚动容器的边界时，会触发滚动。当然该指令也不局限于菜单场景，其他的DOM元素也可以使用，使用时需要注意以下几点：
 
@@ -34,7 +34,7 @@ display: inline-block;
 ### 安装
 
 ```shell
-npm install --save vue-autoscroll
+npm install --save vue-list-autoscroll
 ```
 
 ### 使用
@@ -43,20 +43,20 @@ npm install --save vue-autoscroll
 
 ```javascript
 import Vue from 'vue'
-import VueAutoscroll from "vue-autoscroll"
-Vue.use(VueAutoscroll)
+import VueListAutoscroll from "vue-list-autoscroll"
+Vue.use(VueListAutoscroll)
 ```
 
 #### 局部引入指令
 
 ```javascript
-import VueAutoscroll from "vue-autoscroll"
+import VueListAutoscroll from "vue-list-autoscroll"
 
 export default {
   name: 'SomeComponent'
   mounted() {},
   directives: {
-    autoscroll: VueAutoscroll
+    autoscroll: VueListAutoscroll
   },
   // 其他代码
 }
@@ -79,7 +79,7 @@ export default {
 <html>
 <head>
   <script src="https://cdn.bootcss.com/vue/2.6.10/vue.min.js"></script>
-  <script src="path-to/vue-autoscroll.min.js"></script>
+  <script src="path-to/vue-list-autoscroll.min.js"></script>
 </head>
 <body>
   <div id="app">

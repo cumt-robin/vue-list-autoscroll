@@ -1,8 +1,8 @@
 {
-  "name": "vue-autoscroll",
+  "name": "vue-list-autoscroll",
   "version": "1.0.0",
   "description": "a Vue horizontal scroll directive, and you can pass parameters to control the details",
-  "main": "dist/vue-autoscroll.js",
+  "main": "dist/vue-list-autoscroll.js",
   "scripts": {
     "dev": "cross-env NODE_ENV=development webpack-dev-server --progress --config build/webpack.dev.conf.js",
     "build": "cross-env NODE_ENV=production webpack --progress --config build/webpack.prod.conf.js",
@@ -12,7 +12,7 @@
     "version": "conventional-changelog -p angular -i CHANGELOG.md -s && git add CHANGELOG.md"
   },
   "keywords": [
-    "vue-autoscroll",
+    "vue-list-autoscroll",
     "autoscroll",
     "vue",
     "directive"
@@ -21,7 +21,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/cumt-robin/vue-autoscroll.git"
+    "url": "https://github.com/cumt-robin/vue-list-autoscroll.git"
   },
   "dependencies": {
     "@babel/runtime": "^7.9.2",
@@ -41,6 +41,7 @@
     "clean-webpack-plugin": "^3.0.0",
     "cross-env": "^6.0.3",
     "css-loader": "^3.5.1",
+    "cz-conventional-changelog": "^3.2.0",
     "eslint": "^6.8.0",
     "eslint-import-resolver-webpack": "^0.11.1",
     "eslint-loader": "^3.0.4",
@@ -67,5 +68,10 @@
     "*.scss",
     "*.css",
     "*.vue"
-  ]
+  ],
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  }
 }

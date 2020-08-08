@@ -9,7 +9,7 @@ function resolvePath(dir) {
 const buildConfig = merge(baseWebpackConfig, {
     mode: 'production',
     entry: {
-        'vue-autoscroll': './dist/vue-autoscroll.js'
+        'vue-list-autoscroll': './dist/vue-list-autoscroll.js'
     },
     output: {
         path: resolvePath('dist'),
