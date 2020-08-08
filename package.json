@@ -1,6 +1,6 @@
 {
   "name": "vue-autoscroll",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "a Vue horizontal scroll directive, and you can pass parameters to control the details",
   "main": "dist/vue-autoscroll.js",
   "scripts": {
