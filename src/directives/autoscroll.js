@@ -28,6 +28,7 @@ class AutoScrollHelper {
         this.el.addEventListener('mouseleave', e => {
             this.isWaiting = false;
             this.stopTranslate();
+            this.removeDelayTimer();
         });
         this.el.addEventListener('mousemove', e => {
             if (this.isOverflow) {
@@ -54,6 +55,7 @@ class AutoScrollHelper {
 
     handleUnbind() {
         this.stopTranslate();
+        this.removeDelayTimer();
     }
 
     checkNodes() {
