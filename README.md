@@ -83,7 +83,7 @@ export default {
 </head>
 <body>
   <div id="app">
-    <div class="scroll__wrapper" v-autoscroll="{step: 8, triggerDistance: 160}">
+    <div class="scroll__wrapper" v-autoscroll="{step: 8, triggerDistance: 160, delay: 1000}">
       <ul class="scroll__list">
         <li class="scroll__item" v-for="menu in menuList" :key="menu.id">
           {{menu.name}}
@@ -117,3 +117,4 @@ export default {
 | ---------------- | --------------------------- | -------- | -------- | ------ | :----------------------------------------------------------- |
 | step       | 代表每次raf时移动的距离，单位是px                      | Number   | false    |        | 6                                                            |
 | triggerDistance        | 代表触发滚动的距离条件，单位是px                    | Number   | false    |        | 150                                                          |
+| delay        | 滚动延时，单位是ms。考虑到用户可能需要点击中间的某些导航或内容，所以必须加一个滚动的延时参数，防止用户点不到想要的内容                    | Number   | false    |        | 500                                                          |

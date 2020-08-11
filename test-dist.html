@@ -54,12 +54,13 @@
             <li>ul（横向列表）应该设置样式<code>display: inline-block; white-space: nowrap;</code></li>
             <li>li（列表元素）应该设置样式<code>display: inline-block;</code></li>
         </ul>
-        <p style="width:800px;">指令支持传入一个对象作为参数，<code>v-autoscroll="{step: 8, triggerDistance: 360}"</code></p>
+        <p style="width:800px;">指令支持传入一个对象作为参数，<code>v-autoscroll="{step: 8, triggerDistance: 360, delay: 1000}"</code></p>
         <ul class="info-list">
             <li><code>step</code>代表每次移动的px，默认是6</li>
             <li><code>triggerDistance</code>代表触发滚动的距离条件，默认是150</li>
+            <li><code>delay</code>代表开始滚动的延时，默认是500</li>
         </ul>
-        <div class="scroll__wrapper" v-autoscroll="{step: 8, triggerDistance: 160}">
+        <div class="scroll__wrapper" v-autoscroll="{step: 8, triggerDistance: 160, delay: 1000}">
             <ul class="scroll__list">
                 <li class="scroll__item" v-for="menu in menuList" :key="menu.id">{{menu.name}}</li>
             </ul>

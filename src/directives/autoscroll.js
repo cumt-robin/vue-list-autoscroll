@@ -5,17 +5,20 @@ class AutoScrollHelper {
     constructor(el, options) {
         const defaultOptions = {
             triggerDistance: 150,
-            step: 6
+            step: 6,
+            delay: 500
         };
         this.options = merge(defaultOptions, options);
         this.el = el;
-        this.isOverflow = false;
-        this.isTranslating = false;
+        this.isOverflow = false; // 是否溢出
+        this.isTranslating = false; // 是否正在移动
+        this.isWaiting = false; // 是否延迟等待中
         this.translateDirection = ''; // left代表向左滑动
         this.translateMin = 0;
         this.currentTranslateValue = 0;
         this.rafId = null;
         this.firstChild = null;
+        this.delayTimer = null; // 延迟等待定时器
     }
 
     handleInserted() {
@@ -23,21 +26,27 @@ class AutoScrollHelper {
             this.checkNodes();
         });
         this.el.addEventListener('mouseleave', e => {
+            this.isWaiting = false;
             this.stopTranslate();
         });
         this.el.addEventListener('mousemove', e => {
             if (this.isOverflow) {
                 const { offsetLeft } = getOffset(this.el);
                 if (e.clientX - offsetLeft < this.options.triggerDistance) {
+                    // 到达左侧临界值
                     this.translateDirection = 'right';
-                    if (!this.isTranslating) {
+                    if (!this.isTranslating && !this.isWaiting) {
+                        // 未发生移动并且不在等待期，才可以执行startTranslate方法
                         this.startTranslate();
                     }
                 } else if ((this.containerWidth + offsetLeft - e.clientX) < this.options.triggerDistance) {
+                    // 到达右侧临界值
                     this.translateDirection = 'left';
-                    if (!this.isTranslating) {
+                    if (!this.isTranslating && !this.isWaiting) {
                         this.startTranslate();
                     }
+                } else {
+                    this.isWaiting = false;
                 }
             }
         });
@@ -73,15 +82,26 @@ class AutoScrollHelper {
         this.isTranslating = false;
     }
 
-    startTranslate() {
-        const transformValue = this.firstChild.style.transform;
-        this.currentTranslateValue = !transformValue || transformValue === 'none' ? 0 : Number(transformValue.replace(/[a-zA-z]+\((-?\d+)px\)/, '$1'));
-        this.isTranslating = true;
-        if (this.translateDirection === 'left') {
-            this.doTranslateLeft();
-        } else {
-            this.doTranslateRight();
+    removeDelayTimer() {
+        if (this.delayTimer) {
+            clearTimeout(this.delayTimer)
         }
+    }
+
+    startTranslate() {
+        this.isWaiting = true;
+        this.removeDelayTimer();
+        this.delayTimer = setTimeout(() => {
+            this.isWaiting = false;
+            const transformValue = this.firstChild.style.transform;
+            this.currentTranslateValue = !transformValue || transformValue === 'none' ? 0 : Number(transformValue.replace(/[a-zA-z]+\((-?\d+)px\)/, '$1'));
+            this.isTranslating = true;
+            if (this.translateDirection === 'left') {
+                this.doTranslateLeft();
+            } else {
+                this.doTranslateRight();
+            }
+        }, this.options.delay);
     }
 
     doTranslateLeft() {

@@ -364,18 +364,24 @@ var autoscroll_AutoScrollHelper = /*#__PURE__*/function () {
 
     var defaultOptions = {
       triggerDistance: 150,
-      step: 6
+      step: 6,
+      delay: 500
     };
     this.options = merge(defaultOptions, options);
     this.el = el;
-    this.isOverflow = false;
-    this.isTranslating = false;
+    this.isOverflow = false; // 是否溢出
+
+    this.isTranslating = false; // 是否正在移动
+
+    this.isWaiting = false; // 是否延迟等待中
+
     this.translateDirection = ''; // left代表向左滑动
 
     this.translateMin = 0;
     this.currentTranslateValue = 0;
     this.rafId = null;
     this.firstChild = null;
+    this.delayTimer = null; // 延迟等待定时器
   }
 
   createClass_default()(AutoScrollHelper, [{
@@ -387,6 +393,8 @@ var autoscroll_AutoScrollHelper = /*#__PURE__*/function () {
         _this.checkNodes();
       });
       this.el.addEventListener('mouseleave', function (e) {
+        _this.isWaiting = false;
+
         _this.stopTranslate();
       });
       this.el.addEventListener('mousemove', function (e) {
@@ -395,17 +403,22 @@ var autoscroll_AutoScrollHelper = /*#__PURE__*/function () {
               offsetLeft = _getOffset.offsetLeft;
 
           if (e.clientX - offsetLeft < _this.options.triggerDistance) {
+            // 到达左侧临界值
             _this.translateDirection = 'right';
 
-            if (!_this.isTranslating) {
+            if (!_this.isTranslating && !_this.isWaiting) {
+              // 未发生移动并且不在等待期，才可以执行startTranslate方法
               _this.startTranslate();
             }
           } else if (_this.containerWidth + offsetLeft - e.clientX < _this.options.triggerDistance) {
+            // 到达右侧临界值
             _this.translateDirection = 'left';
 
-            if (!_this.isTranslating) {
+            if (!_this.isTranslating && !_this.isWaiting) {
               _this.startTranslate();
             }
+          } else {
+            _this.isWaiting = false;
           }
         }
       });
@@ -443,17 +456,31 @@ var autoscroll_AutoScrollHelper = /*#__PURE__*/function () {
       this.isTranslating = false;
     }
   }, {
+    key: "removeDelayTimer",
+    value: function removeDelayTimer() {
+      if (this.delayTimer) {
+        clearTimeout(this.delayTimer);
+      }
+    }
+  }, {
     key: "startTranslate",
     value: function startTranslate() {
-      var transformValue = this.firstChild.style.transform;
-      this.currentTranslateValue = !transformValue || transformValue === 'none' ? 0 : Number(transformValue.replace(/[a-zA-z]+\((-?\d+)px\)/, '$1'));
-      this.isTranslating = true;
+      var _this2 = this;
 
-      if (this.translateDirection === 'left') {
-        this.doTranslateLeft();
-      } else {
-        this.doTranslateRight();
-      }
+      this.isWaiting = true;
+      this.removeDelayTimer();
+      this.delayTimer = setTimeout(function () {
+        _this2.isWaiting = false;
+        var transformValue = _this2.firstChild.style.transform;
+        _this2.currentTranslateValue = !transformValue || transformValue === 'none' ? 0 : Number(transformValue.replace(/[a-zA-z]+\((-?\d+)px\)/, '$1'));
+        _this2.isTranslating = true;
+
+        if (_this2.translateDirection === 'left') {
+          _this2.doTranslateLeft();
+        } else {
+          _this2.doTranslateRight();
+        }
+      }, this.options.delay);
     }
   }, {
     key: "doTranslateLeft",
