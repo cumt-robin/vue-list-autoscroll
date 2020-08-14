@@ -107,6 +107,9 @@ class AutoScrollHelper {
     }
 
     doTranslateLeft() {
+        if (!this.isTranslating) {
+            return;
+        }
         let nextValue = this.currentTranslateValue - this.options.step;
         if (nextValue > this.translateMin) {
             this.rafId = window.requestAnimationFrame(this.doTranslateLeft.bind(this));
@@ -120,6 +123,9 @@ class AutoScrollHelper {
     }
 
     doTranslateRight() {
+        if (!this.isTranslating) {
+            return;
+        }
         let nextValue = this.currentTranslateValue + this.options.step;
         if (nextValue < 0) {
             this.rafId = window.requestAnimationFrame(this.doTranslateRight.bind(this));
