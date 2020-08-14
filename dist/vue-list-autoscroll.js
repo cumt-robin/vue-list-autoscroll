@@ -396,6 +396,8 @@ var autoscroll_AutoScrollHelper = /*#__PURE__*/function () {
         _this.isWaiting = false;
 
         _this.stopTranslate();
+
+        _this.removeDelayTimer();
       });
       this.el.addEventListener('mousemove', function (e) {
         if (_this.isOverflow) {
@@ -427,6 +429,7 @@ var autoscroll_AutoScrollHelper = /*#__PURE__*/function () {
     key: "handleUnbind",
     value: function handleUnbind() {
       this.stopTranslate();
+      this.removeDelayTimer();
     }
   }, {
     key: "checkNodes",
@@ -485,6 +488,10 @@ var autoscroll_AutoScrollHelper = /*#__PURE__*/function () {
   }, {
     key: "doTranslateLeft",
     value: function doTranslateLeft() {
+      if (!this.isTranslating) {
+        return;
+      }
+
       var nextValue = this.currentTranslateValue - this.options.step;
 
       if (nextValue > this.translateMin) {
@@ -501,6 +508,10 @@ var autoscroll_AutoScrollHelper = /*#__PURE__*/function () {
   }, {
     key: "doTranslateRight",
     value: function doTranslateRight() {
+      if (!this.isTranslating) {
+        return;
+      }
+
       var nextValue = this.currentTranslateValue + this.options.step;
 
       if (nextValue < 0) {
