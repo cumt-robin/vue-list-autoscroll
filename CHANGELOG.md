@@ -1,3 +1,12 @@
+## [1.1.3](https://github.com/cumt-robin/vue-list-autoscroll/compare/v1.1.2...v1.1.3) (2020-08-14)
+
+
+### Bug Fixes
+
+* 补发dist文件 ([ec1fbac](https://github.com/cumt-robin/vue-list-autoscroll/commit/ec1fbac83524c2553acf71683ec6b6e5e6cb8e91))
+
+
+
 ## [1.1.2](https://github.com/cumt-robin/vue-list-autoscroll/compare/v1.1.1...v1.1.2) (2020-08-14)
 
 
