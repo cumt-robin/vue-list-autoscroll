@@ -1,3 +1,12 @@
+## [1.1.2](https://github.com/cumt-robin/vue-list-autoscroll/compare/v1.1.1...v1.1.2) (2020-08-14)
+
+
+### Bug Fixes
+
+* 优化鼠标移出容器的控制逻辑 ([8b684b8](https://github.com/cumt-robin/vue-list-autoscroll/commit/8b684b860954e841d0f51e8e9c90223dbd6fa73d))
+
+
+
 ## [1.1.1](https://github.com/cumt-robin/vue-list-autoscroll/compare/v1.1.0...v1.1.1) (2020-08-11)
 
 
